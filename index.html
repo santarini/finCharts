@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="chartdata.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var mixedChart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: dataLabels,
+                datasets: [{
+                    label: "Volume Data",
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    yAxisID: 'y-axis-1',
+                    data: volumeData,
+                },
+                           {
+                    label: "Price Data",
+                    backgroundColor: 'rgba(255, 99, 132, .0)',
+                    borderColor: 'rgb(100, 99, 132)',
+                    yAxisID: 'y-axis-2',
+                    data: priceData,
+                    type: 'line',
+                }],
+            },
+
+            // Configuration options go here
+            options: {
+					scales: {
+						yAxes: [{
+                            //right axis for the bar graph
+							type: 'linear',
+							display: true,
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                stepSize: 20,
+                            },
+                            display: false,
+							position: 'right',
+							id: 'y-axis-1',
+                            gridLines: {
+								drawOnChartArea: false
+							}
+						}, {
+                            //left axis for the line graph
+							type: 'linear',
+							display: true,
+							position: 'left',
+							id: 'y-axis-2',
+						}],
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>
